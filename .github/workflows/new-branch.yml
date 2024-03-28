@@ -15,6 +15,11 @@ jobs:
 
      - uses: actions/checkout@v3
 
+     - name: Extract branch name
+       shell: bash
+       run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+       id: extract_branch
+
      - name: Login to Docker Hub
        uses: docker/login-action@v3
        with:
@@ -30,10 +35,10 @@ jobs:
       
      - name: Tag frontend
        working-directory: ./front-end-react
-       run: docker tag frontend chavantfou/frontend #:$(date +%s)
+       run: docker tag frontend chavantfou/frontend:${{ steps.extract_branch.outputs.branch }}
 
      - name: Push frontend
        working-directory: ./front-end-react
-       run: docker push chavantfou/frontend #:$(date +%s)
+       run: docker push chavantfou/frontend:${{ steps.extract_branch.outputs.branch }}
       
   
