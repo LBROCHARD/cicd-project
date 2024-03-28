@@ -28,7 +28,7 @@ jobs:
       
     - name: Tag frontend
       working-directory: ./front-end-react
-      run: docker tag user-service chavantfou/frontend #:$(date +%s)
+      run: docker tag frontend chavantfou/frontend #:$(date +%s)
 
     - name: Push frontend
       working-directory: ./front-end-react
