@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - uses: actions/checkout@v3
+    
+    - name: Build frontend
+      working-directory: ./front-end-react
+      run: docker build -t frontend .
+      
+    - name: Tag frontend
+      working-directory: ./front-end-react
+      run: docker tag user-service chavantfou/frontend #:$(date +%s)
+
+    - name: Push frontend
+      working-directory: ./front-end-react
+      run: docker push chavantfou/frontend #:$(date +%s)
