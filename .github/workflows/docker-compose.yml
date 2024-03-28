@@ -1,0 +1,43 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  # build:
+
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Build the Docker image
+  #     run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+  docker:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Start containers
+      run: docker-compose -f "docker-compose.yml" up -d --build
+
+    # - name: Install node
+    #   uses: actions/setup-node@v1
+    #   with:
+    #     node-version: 14.x
+
+    # - name: Install dependencies
+    #   run: npm install
+
+    # - name: Run tests
+    #   run: npm run test
+
+    # - name: Stop containers
+    #   if: always()
+    #   run: docker-compose -f "docker-compose.yml" down
