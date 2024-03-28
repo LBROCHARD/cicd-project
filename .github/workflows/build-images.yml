@@ -22,6 +22,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_LOGIN }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+
     # frontend
     
     - name: Build frontend
@@ -36,6 +37,7 @@ jobs:
       working-directory: ./front-end-react
       run: docker push chavantfou/frontend #:$(date +%s)
 
+
     # order-service
 
     - name: Build order-service
@@ -49,3 +51,19 @@ jobs:
     - name: Push order-service
       working-directory: ./order-service
       run: docker push chavantfou/order-service
+
+
+    # user-service
+
+    - name: Build user-service
+      working-directory: ./user-service
+      run: docker build -t user-service .
+      
+    - name: Tag user-service
+      working-directory: ./user-service
+      run: docker tag user-service chavantfou/user-service
+
+    - name: Push user-service
+      working-directory: ./user-service
+      run: docker push chavantfou/user-service
+
