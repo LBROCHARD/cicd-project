@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  user-service:
+    image: user-service
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+    expose:
+      - 3001
+  db:
+    image: mongo:latest
+    hostname: test_mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=userdb
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+  frontend:
+    image: frontend
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+  order-service:
+    image: order-service
+    restart: unless-stopped
+    ports:
+      - 3002:3002
+    expose:
+      - 3002
