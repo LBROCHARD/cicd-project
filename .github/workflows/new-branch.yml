@@ -3,7 +3,7 @@ name: New Tag Branch
 on:
   push:
     branches: 
-      - 1.*
+      - '[0-9]+.[0-9]+.[0-9]+'
       
 jobs:
 
