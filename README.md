@@ -27,7 +27,7 @@
         - Puis chaque service est ensuite automatiquement build, tag en utilisant comme version le nom de la branche, puis push sur Dockerhub
     
 3. **Déploiement dans Kubernetes**
-    - Dans le repository micro-app-deploy, nous avons créé un dossier pour chaque service avec dedans un fichier pour le déploiement et un pour le service.
+    - Dans le repository [https://github.com/Liv44/microapp-deploy](micro-app-deploy), nous avons créé un dossier pour chaque service avec dedans un fichier pour le déploiement et un pour le service.
     - Pour déployer sur le cluster Kubernetes voici les commandes à faire :
         - `minikube start` pour lancer le cluster
         - `kubectl apply -f deployment.yml` pour appliquer le déploiement prévu
